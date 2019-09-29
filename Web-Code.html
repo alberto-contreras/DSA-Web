@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>First Website to check GitHub Users</title>
+  <meta charset="utf-8">
+  <!-- Resize the page depending on the device-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- To use bootstrap library we can dowload it or use CDN also for jquery-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- To create a script we only need the tag en put the functions in always with document.ready to wait untill all the page it's loaded-->
+<script>
+
+$(document).ready(function(){
+  $("#githublink").hide();
+  $("#info").click(function(){
+
+    alert("Searching data: " + $("#username1").val());
+    $("#info").toggle(1000);
+    $("#githublink").show();
+    $("#githublink").attr("href", "https://github.com/"+$("#username1").val());
+  });
+});
+</script>
+</head>
+<body>
+<div class="p-3 mb-2 bg-dark text-white"></div>
+<div class="container">
+  <h1>Welcome to my First Website</h1>
+  <p>Here you can find information about GitHub Users like: name, description and followers.</p>
+</div>
+<div class="container">
+  <h1>Search data:</h1>
+  <p></p>
+  <div class="row">
+    <div class="col" style="background-color:Gray;"><b>USERNAME</b></div>
+    <div class="col" style="background-color:Red;"><b>CLICK THE BUTTON </b></div>
+</div>
+</div>
+<!-- br allow us to make a space to separate-->
+<br><br/>
+<div class="container">
+<!-- form allow us to make a form to receive data form the user in the case of form-inline it's just to have everything in one line-->
+  <form class="form-inline">
+    <label for="username" class="mb-2 mr-sm-2">Username:</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" id="username1" placeholder="Enter username" name="user">
+    <div class="form-check mb-2 mr-sm-2">
+    </div>
+	<button type="button" class="btn btn-info" id="info">Info</button>
+  </form>
+ <p><a href="https://github.com" id="githublink">UserInfo</a></p>
+</div>
+<div class="p-3 mb-2 bg-dark text-white"></div>
+<br>
+</body>
+</html>
