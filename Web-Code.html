@@ -12,19 +12,30 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <!-- To create a script we only need the tag en put the functions in always with document.ready to wait untill all the page it's loaded-->
-<script>
 
+<script>
+var name;
+var repos;
+var followers;
 $(document).ready(function(){
   $("#githublink").hide();
   $("#info").click(function(){
-
-    alert("Searching data: " + $("#username1").val());
-    $("#info").toggle(1000);
-    $("#githublink").show();
-    $("#githublink").attr("href", "https://github.com/"+$("#username1").val());
+    $.get("https://api.github.com/users/"+$("#username1").val(), function(data, status){
+      //alert("Data: " + data.bio + "\nStatus: " + status);
+      alert("Searching data: " + $("#username1").val());
+      name = data.login;
+      repos = data.public_repos;
+      followers= data.followers;
+      $("tbody").append("<tr>","<td>"+name+"</td>","<td>"+repos+"</td>","<td>"+followers+"</td>","</tr>");
+    });
+      $("#githublink").show();
+      $("#githublink").attr("href", "https://github.com/"+$("#username1").val());
+// Append new elements
   });
+
 });
 </script>
+
 </head>
 <body>
 <div class="p-3 mb-2 bg-dark text-white"></div>
@@ -54,6 +65,21 @@ $(document).ready(function(){
  <p><a href="https://github.com" id="githublink">UserInfo</a></p>
 </div>
 <div class="p-3 mb-2 bg-dark text-white"></div>
+<div class="container">
+  <h2>Info TABLE</h2>
+  <p>CHECK THE RESULTS:</p>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Repos</th>
+        <th>Followers</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
 <br>
 </body>
 </html>
